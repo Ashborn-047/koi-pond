@@ -22,6 +22,11 @@
     "nature-simulation",
     "vanilla-javascript"
   ],
+  "homepage": "https://ashborn-047.github.io/koi-pond/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashborn-047/koi-pond.git"
+  },
   "author": "Pushan",
   "license": "MIT"
 }

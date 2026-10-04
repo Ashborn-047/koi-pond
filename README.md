@@ -1,7 +1,7 @@
 # 鯉の池 · KOI POND — Interactive Zen Sanctuary
 
-[![Deploy to GitHub Pages](https://github.com/pushan-dev/koi-pond/actions/workflows/deploy.yml/badge.svg)](https://github.com/pushan-dev/koi-pond/actions/workflows/deploy.yml)
-[![CI Quality & Syntax Check](https://github.com/pushan-dev/koi-pond/actions/workflows/ci.yml/badge.svg)](https://github.com/pushan-dev/koi-pond/actions/workflows/ci.yml)
+[![Deploy to GitHub Pages](https://github.com/Ashborn-047/koi-pond/actions/workflows/deploy.yml/badge.svg)](https://github.com/Ashborn-047/koi-pond/actions/workflows/deploy.yml)
+[![CI Quality & Syntax Check](https://github.com/Ashborn-047/koi-pond/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashborn-047/koi-pond/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 [![Vanilla JavaScript](https://img.shields.io/badge/Vanilla-ES6%2B%20Modules-f59e0b.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![HTML5 Canvas](https://img.shields.io/badge/Graphics-HTML5%20Canvas2D-38bdf8.svg)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
@@ -15,9 +15,7 @@
 ## 🌊 Live Demonstration
 
 Experience the interactive sanctuary directly in your browser:
-**[Launch Koi Pond Sanctuary](https://<your-username>.github.io/<your-repo-name>/)**
-
-*(Replace `<your-username>/<your-repo-name>` with your GitHub repository link upon pushing).*
+👉 **[https://ashborn-047.github.io/koi-pond/](https://ashborn-047.github.io/koi-pond/)**
 
 ---
 
@@ -140,7 +138,7 @@ KOI POND/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/<your-username>/koi-pond.git
+   git clone https://github.com/Ashborn-047/koi-pond.git
    cd koi-pond
    ```
 
@@ -166,11 +164,8 @@ This repository is pre-configured with automated **GitHub Actions** for instant,
 
 1. Push this repository to GitHub:
    ```bash
-   git init
-   git add .
-   git commit -m "feat: initial release of Koi Pond Zen Sanctuary"
+   git remote add origin https://github.com/Ashborn-047/koi-pond.git
    git branch -M main
-   git remote add origin https://github.com/<your-username>/<your-repo-name>.git
    git push -u origin main
    ```
 
@@ -180,7 +175,7 @@ This repository is pre-configured with automated **GitHub Actions** for instant,
    - The `.github/workflows/deploy.yml` workflow will automatically run and publish your site!
 
 3. Your live link will be available at:
-   `https://<your-username>.github.io/<your-repo-name>/`
+   👉 **https://ashborn-047.github.io/koi-pond/**
 
 ---
 

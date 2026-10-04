@@ -1,0 +1,324 @@
+/* ==========================================================================
+   UI CONTROLS & FLOATING DOCK
+   Luxury Zen glassmorphism, responsive dock, segmented controls & toggles.
+   ========================================================================== */
+
+/* Universal floating elements */
+.ui {
+  position: fixed;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+}
+
+/* Hidden state when UI is toggled off */
+.off .ui.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.off #top-bar.hide {
+  transform: translateY(-12px);
+}
+
+/* Glassmorphism Surface Base */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 20, 15, 0.4), 0 1px 2px rgba(255, 255, 255, 0.08) inset;
+  border-radius: 16px;
+}
+
+/* Universal Button Style */
+button {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+button:hover {
+  color: #ffffff;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Top Navigation Bar
+   -------------------------------------------------------------------------- */
+#top-bar {
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+#top-bar > * {
+  pointer-events: auto;
+}
+
+/* Brand Badge */
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 13.5px;
+}
+
+.brand-kanji {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: pulse 2.4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+/* Top Action Buttons Group */
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 8px 14px;
+  border-radius: 12px;
+}
+
+.action-btn:hover {
+  background: var(--glass-hover);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.action-btn.active {
+  background: rgba(56, 239, 189, 0.16);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.action-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Bottom Dock Control Center
+   -------------------------------------------------------------------------- */
+#dock-container {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  max-width: calc(100% - 24px);
+}
+
+#dock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  overflow-x: auto;
+  max-width: 100%;
+  scrollbar-width: none;
+}
+
+#dock::-webkit-scrollbar {
+  display: none;
+}
+
+/* Section dividers inside dock */
+.dock-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* Dock buttons */
+.dock-btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.18s ease;
+}
+
+.dock-btn:hover {
+  background: var(--glass-hover);
+}
+
+.dock-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+/* Stepper (Fish Counter) */
+.stepper-group {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 2px 4px;
+}
+
+.step-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.step-btn:hover {
+  background: var(--glass-hover);
+  color: #ffffff;
+}
+
+.step-count {
+  min-width: 58px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12.5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Segmented Control (Time of Day: Day / Dusk / Night) */
+.segmented-control {
+  display: flex;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.seg-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  gap: 5px;
+}
+
+.seg-btn:hover {
+  color: #ffffff;
+}
+
+.seg-btn.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.seg-btn.active svg {
+  color: var(--accent-cyan);
+}
+
+/* Weather & Sound Toggle Pill Buttons */
+.toggle-btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  gap: 8px;
+}
+
+.toggle-btn .indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #505c60;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn.on {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.toggle-btn.on .indicator-dot {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   Guidance Hint Banner
+   -------------------------------------------------------------------------- */
+#hint {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  padding: 8px 18px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: #d1fae5;
+  text-shadow: 0 1px 6px rgba(0, 30, 20, 0.8);
+  pointer-events: none;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  white-space: nowrap;
+}
+
+#hint.gone {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 680px) {
+  .brand-badge span.full-title {
+    display: none;
+  }
+  .dock-btn span.label,
+  .seg-btn span.label,
+  .toggle-btn span.label {
+    display: none;
+  }
+  .dock-btn, .seg-btn, .toggle-btn {
+    padding: 8px 10px;
+  }
+}

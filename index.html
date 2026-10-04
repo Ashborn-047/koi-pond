@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Koi Pond - Interactive Zen Sanctuary</title>
+  <meta name="description" content="A serene, interactive Japanese Koi Pond with realistic water physics, blooming lotus leaves, swimming koi varieties, and falling cherry petals.">
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Simulation Canvas Viewport -->
+  <canvas id="c" aria-label="Interactive Koi Pond simulation canvas"></canvas>
+
+  <!-- Top Navigation & Brand Header -->
+  <header id="top-bar" class="ui hide">
+    <div class="brand-badge glass-panel">
+      <span class="brand-kanji">鯉</span>
+      <span class="full-title">KOI POND</span>
+      <span class="pulse-dot" title="Pond living simulation active"></span>
+    </div>
+
+    <div class="top-actions">
+      <!-- Zen / Meditation Slow-Mo Mode -->
+      <button id="zen" class="action-btn glass-panel" title="Zen Meditation Mode (Slows time)">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-13h-2v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        <span class="label">Zen</span>
+      </button>
+
+      <!-- Snapshot / Photo Wallpaper Mode -->
+      <button id="snap" class="action-btn glass-panel" title="Capture Pond Snapshot">
+        <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 2a3 3 0 1 1-3 3 3 3 0 0 1 3-3z"/></svg>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button id="full" class="action-btn glass-panel" title="Toggle Fullscreen (F)">
+        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+      </button>
+
+      <!-- Hide/Show UI Toggle -->
+      <button id="hideb" class="action-btn glass-panel" title="Toggle UI Controls (H)">
+        <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Interactive Hint Banner -->
+  <div id="hint" class="ui glass-panel hide">
+    Tap to drop food • Move to stir waters • Space to scatter
+  </div>
+
+  <!-- Bottom Floating Control Center Dock -->
+  <div id="dock-container" class="ui hide">
+    <nav id="dock" class="glass-panel" aria-label="Pond Controls">
+      <!-- Scatter Action -->
+      <button id="scat" class="dock-btn" title="Scatter Koi Fish (Space)">
+        <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 16a7 7 0 1 1 7-7 7 7 0 0 1-7 7zm-1-11h2v6h-2zm0 8h2v2h-2z"/></svg>
+        <span class="label">Scatter</span>
+      </button>
+
+      <div class="dock-sep"></div>
+
+      <!-- Koi Counter Stepper -->
+      <div class="stepper-group" title="Adjust number of Koi fish in the pond">
+        <button id="minus" class="step-btn" aria-label="Decrease koi count">−</button>
+        <span class="step-count">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c-2.48 0-4.5-2.02-4.5-4.5S10.52 7.5 13 7.5s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5z"/></svg>
+          <span id="cnt">7</span>
+        </span>
+        <button id="plus" class="step-btn" aria-label="Increase koi count">+</button>
+      </div>
+
+      <div class="dock-sep"></div>
+
+      <!-- Time of Day: Day / Dusk / Night -->
+      <div class="segmented-control" role="group" aria-label="Time of Day">
+        <button id="btn-day" class="seg-btn active" title="Bright Sunny Day">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm0-13a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1zm0 18a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1zm10-9h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1z"/></svg>
+          <span class="label">Day</span>
+        </button>
+        <button id="btn-dusk" class="seg-btn" title="Golden Sunset Dusk">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12.005 3a9 9 0 0 0-7.85 4.6 1 1 0 0 0 1.7 1.05A7 7 0 1 1 5 12a1 1 0 0 0-2 0 9 9 0 1 0 9.005-9z"/></svg>
+          <span class="label">Dusk</span>
+        </button>
+        <button id="btn-night" class="seg-btn" title="Serene Moonlit Night">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.6-7.1 1 1 0 0 0-1.2-1.2 8 8 0 1 1-7.7-10.5 1 1 0 0 0 1.2-1.2z"/></svg>
+          <span class="label">Night</span>
+        </button>
+      </div>
+
+      <div class="dock-sep"></div>
+
+      <!-- Rain Toggle -->
+      <button id="rain" class="toggle-btn" title="Toggle Gentle Rain Shower">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM10 17l-2 4h2l2-4zm5-1l-2 4h2l2-4z"/></svg>
+        <span class="label">Rain</span>
+        <span class="indicator-dot"></span>
+      </button>
+
+      <!-- Sound Toggle -->
+      <button id="snd" class="toggle-btn" title="Toggle Relaxing Water Audio">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.04v7.92c1.48-.48 2.5-1.89 2.5-3.96zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <span class="label">Sound</span>
+        <span class="indicator-dot"></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Modular ES6 Simulation & Physics Engine -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>

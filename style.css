@@ -1,0 +1,8 @@
+/* ==========================================================================
+   KOI POND - CSS MANIFEST
+   Imports modular stylesheets for base layout, canvas, and UI components.
+   ========================================================================== */
+
+@import "./css/base.css";
+@import "./css/canvas.css";
+@import "./css/ui.css";

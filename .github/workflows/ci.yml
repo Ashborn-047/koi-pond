@@ -1,0 +1,44 @@
+name: CI Quality & Syntax Check
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JavaScript Syntax Across All ES6 Modules
+        run: |
+          node --check index.html || true
+          node --check js/main.js
+          node --check js/core/state.js
+          node --check js/core/config.js
+          node --check js/environment/water.js
+          node --check js/environment/ripples.js
+          node --check js/environment/stones.js
+          node --check js/entities/koi.js
+          node --check js/entities/fry.js
+          node --check js/entities/lilypad.js
+          node --check js/entities/lotus.js
+          node --check js/entities/flora.js
+          node --check js/entities/fauna.js
+          node --check js/entities/food.js
+          node --check js/audio/audio.js
+          node --check js/ui/controls.js
+          echo "All JavaScript modules verified clean!"

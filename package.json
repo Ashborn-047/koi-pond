@@ -1,0 +1,27 @@
+{
+  "name": "koi-pond-zen-sanctuary",
+  "version": "2.0.0",
+  "description": "An interactive, meditative Japanese Koi Pond simulation with realistic fluid dynamics, swimming koi varieties, drifting lotus leaves, living garden fauna, and procedural Web Audio soundscapes.",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check js/main.js js/core/state.js js/core/config.js js/environment/water.js js/environment/ripples.js js/environment/stones.js js/entities/koi.js js/entities/fry.js js/entities/lilypad.js js/entities/lotus.js js/entities/flora.js js/entities/fauna.js js/entities/food.js js/audio/audio.js js/ui/controls.js"
+  },
+  "keywords": [
+    "koi",
+    "koi-pond",
+    "canvas",
+    "html5-canvas",
+    "web-audio-api",
+    "procedural-audio",
+    "generative-art",
+    "fluid-dynamics",
+    "zen-garden",
+    "meditation",
+    "nature-simulation",
+    "vanilla-javascript"
+  ],
+  "author": "Pushan",
+  "license": "MIT"
+}

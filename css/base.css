@@ -1,0 +1,41 @@
+/* ==========================================================================
+   BASE & RESET STYLES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap');
+
+:root {
+  box-sizing: border-box;
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', var(--font-main);
+  
+  /* Color tokens */
+  --bg-pond: #2a9a78;
+  --glass-bg: rgba(13, 23, 26, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-hover: rgba(255, 255, 255, 0.16);
+  --glass-active: rgba(255, 255, 255, 0.24);
+  --accent-cyan: #38efbd;
+  --accent-glow: rgba(56, 239, 189, 0.35);
+  --text-main: #f0fdf9;
+  --text-muted: #a7ccc3;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg-pond);
+  overflow: hidden;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-main);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
